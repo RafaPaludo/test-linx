@@ -1,0 +1,460 @@
+// $ sass --watch src/styles/sass:src/styles/css
+
+@import 'normalize.scss';
+@import 'global.scss';
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $base-font-family;
+  font-weight: 400;
+  font-size: 62.5%;
+  line-height: 1.3;
+}
+
+.header-container {
+  padding: 142px 0;
+  color: $color-white;
+  background-color: $color-primary;
+  clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 80%);
+  margin: 0 auto;
+  text-align: center;
+  
+  h1 {
+    max-width: $grid-desktop;
+    font-size: 3.6em;
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+  
+  span {
+    max-width: $grid-desktop;
+    font-size: 1.8em;
+  }
+}
+
+// Order Form
+#order {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-radius: 8px;
+  background: $color-secondary;
+  max-width: $grid-desktop;
+  margin: 56px auto 0;
+  padding: 24px;
+  
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-white;
+    border-radius: 8px;
+  }
+
+  input {
+    font-size: 1.2em;
+    color: $color-text-gray-2;
+    padding: 8px 8px 8px 16px;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    border: 1px solid $color-white;
+    min-width: 250px;
+  }
+
+  button {
+    font-size: 1.4em;
+    padding: 6px;
+    border: 2px solid $color-white;
+    background-color: $color-secondary;
+    color: $color-white;
+    line-height: 1.1;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color .1s ease-in;
+  }
+
+  .filter {
+    color: $color-white;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 29px;
+
+    span {
+      font-size: 1.4em;
+      font-weight: 700;
+    }
+
+    select {
+      font-size: 1.2em;
+      color: $color-text-gray-2;
+      padding: 5px 5px 5px 16px;
+      border-radius: 8px;
+      outline: none;
+      border: 1px solid $color-white;
+      background-color: $color-white;
+      min-width: 192px;
+      height: 34px;
+      position: relative;
+
+      -moz-appearance:none; /* Firefox */
+      -webkit-appearance:none; /* Safari and Chrome */
+      appearance:none;
+      background-image: url('../../img/select-arrow.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: 95% 55%;
+    }
+  }
+}
+
+// Product Card
+#card-grid {
+  display: grid;
+  margin: 73px auto;
+  max-width: $grid-desktop;
+  grid-template-columns: repeat(4, minmax(200px, 252px));
+  gap: 24px;
+  padding: 0 24px;
+  justify-content: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid $color-black;
+  border-radius: 14px;
+  padding: 18px;
+  transition: all .2s ease-in;
+}
+
+.available {
+  display: none;
+}
+
+.not-available {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-white;
+  z-index: 4;
+  opacity: .5;
+  border-radius: 12px;
+}
+
+.img-thumbnail {
+  max-width: 216px;
+  max-height: 216px;
+  position: relative;
+
+  img {
+    object-fit: scale-down;
+    width: 100%;
+  }
+}
+
+.product-btn {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: $color-white;
+  text-transform: uppercase;
+  padding: 1.1em;
+  text-align: center;
+  background-color: $color-secondary;
+  border-radius: 5px;
+  transition: all .2s ease-in;
+  width: 100%;
+  padding: 8px;
+  z-index: 5;
+  
+  &.only-desktop {
+    padding: 11px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    opacity: 0;
+  }
+}
+
+.product-name {
+  font-size: 1.4em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  max-height: 2.75em;
+  padding-bottom: 1.6em;
+}
+
+.prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  color: $color-text-gray-3;
+}
+
+.price-old {
+  text-decoration: line-through;
+  font-size: 1.3em;
+  margin-right: 5px;
+
+  &.disable {
+    display: none;
+  }
+}
+
+.price {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.installments {
+  flex-basis: 100%;
+  font-size: 1em;
+}
+
+.unavailable {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.disclaimer {
+  font-size: 1.3em;
+}
+
+.flag-container {
+  position: absolute;
+  top: 0;
+  left: -18px;
+}
+
+.flag {
+  display: none;
+  padding: 8px;
+  color: $color-white;
+  font-weight: 700;
+  font-size: 1.2em;
+  border-radius: 0 8px 8px 0;
+  width: fit-content;
+  margin: 0 0 4px;
+}
+
+.discount {
+  display: block;
+  background-color: $color-secondary;
+}
+
+.free-shipping {
+  display: block;
+  background-color: $color-primary;
+}
+
+.only-mobile {
+  display: none;
+}
+
+// Newsletter
+#newsletter {
+  border-radius: 8px;
+  background: $color-secondary;
+  max-width: 876px;
+  margin: 0 auto;
+  padding: 2.4em 4.8em;
+  color: $color-white;
+  
+  h2 {
+    flex-basis: 100%;
+    font-weight: 700;
+    font-size: 1.4em;
+  }
+  
+  form {
+    margin-top: .8em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  label {
+    flex-basis: 43%;
+  }
+
+  input {
+    display: block;
+    font-size: 1.2em;
+    color: #757575;
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid $color-white;
+    width: 100%;
+    line-height: 1.4;
+  }
+  
+  input[type='submit'] {
+    font-size: 1.4em;
+    line-height: 1.2;
+    height: 34px;
+    color: $color-secondary;
+    font-weight: 700;
+    width: 100px;
+    transition: all .2s ease-in;
+  }
+}
+
+// Form about
+#about {
+  max-width: $grid-desktop;
+  margin: 73px auto 48px;
+  display: flex;
+  flex-wrap: nowrap;    
+  gap: 65px;
+  padding: 0 72px;
+
+  p {
+    font-size: 1.4em;
+    color: $color-text-gray;
+  }
+}
+
+// Footer
+footer {
+  background-color: $color-primary;
+  color: $color-white;
+  font-size: 1.2em;
+  line-height: 1.6;
+  text-align: center;
+  padding: 32px 0;
+}
+
+// HOVER INTERACTIONS
+@media screen and (min-width: 1025px) {
+  #order {
+    button {
+      &:hover {
+        cursor: pointer;
+        background-color: $color-terciary;
+      }
+    }
+  }
+  
+  .card-container {
+    &:hover {
+      cursor: pointer;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+  
+      .product-btn {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .product-btn {
+    &:hover {
+      background-color: $color-terciary;
+    }
+  }
+  
+  #newsletter input[type='submit'] {
+    &:hover {
+      cursor: pointer;
+      color: $color-white;
+      background-color: $color-terciary;
+      border-color: $color-terciary;
+    }
+  }
+}
+
+// Media Mobile / Tablet
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  #card-grid {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header-container {
+    padding: 64px 0;
+    
+    h1 {
+      font-size: 2.4em;
+    }
+  }
+
+  .header-mobile {
+    text-align: center;
+    color: $color-primary;
+    font-size: 1.6em;
+    padding: 0 24px;
+    margin-top: 20px;
+  }
+
+  #card-grid {
+    grid-template-columns: repeat(1, minmax(300px, 400px));
+    padding: 0 12px;
+  }
+
+  .card-container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    &:nth-of-type(3n + 1) {
+      display: none;
+    }
+  }
+  
+  .img-thumbnail,
+  .product-content {
+    flex-basis: 50%;
+  }
+
+  .prices {
+    position: relative;
+    gap: 0.8em;
+  }
+
+  .price-old {
+    display: block;
+    width: 100%;
+  }
+
+  #order {
+    padding: 30px 16px;
+    gap: 20px;
+  }
+
+  #about {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    gap: 32px;
+  }
+
+  .only-mobile {
+    display: block;
+  }
+
+  #newsletter,
+  .only-desktop {
+    display: none;
+  }
+}
